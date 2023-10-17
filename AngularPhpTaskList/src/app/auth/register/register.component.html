@@ -1,1 +1,46 @@
-<p>register works!</p>
+<div class="root-container">
+    <div class="container">
+        <h1 class="bienvenida-text">Task List</h1>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Sign up</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <label for="username">Name:</label>
+                                <input type="text" class="form-control my-3" id="username"
+                                    placeholder="Enter your username" formControlName="username" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Mail:</label>
+                                <input type="email" class="form-control my-3" id="email" placeholder="Enter your email"
+                                    formControlName="email" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control my-3" id="password"
+                                    placeholder="Enter your password" formControlName="password" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordValidation">Confirm password:</label>
+                                <input type="password" class="form-control my-3" id="passwordValidation"
+                                    placeholder="Repeat your password" formControlName="passwordValidation" required />
+                            </div>
+
+                            <div *ngIf="passwordsMatch" class="text-danger">Passwords do NOT match!</div>
+                            <button type="submit" class="boton">Sign up</button>
+                            <div class="TextBottom" style="margin-top: 10px">
+                                <small>* Already have an account?
+                                    <a routerLink="/login">Login →</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

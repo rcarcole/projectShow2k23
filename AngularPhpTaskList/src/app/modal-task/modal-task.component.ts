@@ -12,4 +12,9 @@ export class ModalTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  addTask(): void {
+    console.log('addTask');
+  }
+
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  formLogin: FormGroup;
+  passwordError: boolean = false;
+
+  constructor(private userService: UserService, private router: Router) {
+    this.formLogin = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+    });
+  }
 
   ngOnInit(): void {
   }
 
+  onSubmit() {
+    this.userService.login(this.formLogin.value).then(
+      res => {
+        // console.log(res);
+        this.router.navigate(['/home']);
+      },
+      err => {
+        console.log(err);
+        this.passwordError = true;
+      }
+    );
+  }
+
+  onClick() {
+    this.userService.loginWithGoogle()
+      .then((res) => {
+        console.log(res);
+        this.router.navigate(['components/home']);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tasklist-b2252": {
+      "hosting": {
+        "AngularPhpTaskList": [
+          "tasklist-b2252"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tasklist-b2252"
+  }
+}
