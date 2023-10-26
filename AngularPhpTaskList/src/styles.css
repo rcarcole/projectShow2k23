@@ -1,17 +1,17 @@
-body,
 html {
+  min-height: 100%;
+  position: relative;
+}
+body {
   margin: 0;
-  padding: 0;
-  height: 100%;
+  margin-bottom: 40px;
 }
 
 #page-container {
   position: relative;
   min-height: 100vh;
   margin: 0;
-  padding-bottom: calc(
-    4rem + 16px
-  ); /* Ajusta este valor para que coincida con la altura de tu footer */
+  padding-bottom: calc(4rem + 16px);
 }
 
 #content-wrap {
@@ -20,8 +20,9 @@ html {
 }
 
 #footer {
+  background-color: black;
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 4rem;
+  color: white;
 }

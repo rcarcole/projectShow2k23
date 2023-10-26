@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) {
     this.formLogin = new FormGroup({
-      username: new FormControl(''),
+      email: new FormControl(''),
       password: new FormControl(''),
     });
   }
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginWithGoogle()
       .then((res) => {
         console.log(res);
-        this.router.navigate(['components/home']);
+        this.router.navigate(['home']);
       }).catch((err) => {
         console.log(err);
       });
