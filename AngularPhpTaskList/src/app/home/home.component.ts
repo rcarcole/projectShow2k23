@@ -8,6 +8,7 @@ import { User, Category, Task } from '../interfaces/interfaces';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  selectedTask?: Task;
 
   exampleUser: User = {
     id: 1,
@@ -57,12 +58,22 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  openModal(task: Task): void {
+    this.selectedTask = task;
+    let modal = document.getElementById('modalId');
+    setTimeout(() => {
+      modal = document.getElementById('modalId');
+      modal?.click();
+    }, 1000);
+    console.log(modal);
+
   }
+
+  ngOnInit(): void { }
 
   addTask($event: any) {
     this.exampleTasks.push($event);
   }
 
 
-}
+} 

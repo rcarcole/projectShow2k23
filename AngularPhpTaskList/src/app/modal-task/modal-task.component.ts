@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Task } from '../interfaces/interfaces';
 
 @Component({
@@ -9,17 +8,24 @@ import { Task } from '../interfaces/interfaces';
   styleUrls: ['./modal-task.component.css']
 })
 export class ModalTaskComponent implements OnInit {
+  @Input() task!: any;
   form: FormGroup;
   @Output() newItemEvent = new EventEmitter<Task>();
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
     this.form = new FormGroup({
       name: new FormControl(''),
       description: new FormControl(''),
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log(this.task);
+    this.form = this.fb.group({
+      name: [this.task ? this.task.title : ''],
+      description: [this.task ? this.task.description : '']
+    });
+  }
 
 
   addTask(): void {

@@ -4,16 +4,16 @@
             <h1>Home</h1>
             <div class="form-check" *ngFor="let task of exampleTasks">
                 <input class="form-check-input" type="checkbox" value="" id="{{ task.id }}">
-                <label class="form-check-label" for="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault" (click)="openModal(task)">
                     {{ task.title }}
                 </label>
             </div>
             <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">Add Task</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    id="modalId">Add Task</button>
                 <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <app-modal-task (newItemEvent)="addTask($event)"></app-modal-task>
+                    <app-modal-task (newItemEvent)="addTask($event)" [task]="selectedTask"></app-modal-task>
                 </div>
             </div>
         </div>
