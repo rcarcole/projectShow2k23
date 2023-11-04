@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -10,13 +10,13 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  formLogin: FormGroup;
+  formLogin: UntypedFormGroup;
   passwordError: boolean = false;
 
   constructor(private userService: UserService, private router: Router) {
-    this.formLogin = new FormGroup({
-      email: new FormControl(''),
-      password: new FormControl(''),
+    this.formLogin = new UntypedFormGroup({
+      email: new UntypedFormControl(''),
+      password: new UntypedFormControl(''),
     });
   }
 

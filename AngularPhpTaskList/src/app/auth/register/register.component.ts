@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, AbstractControl, ValidationErrors, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, AbstractControl, ValidationErrors, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -10,7 +10,7 @@ import { UserService } from '../../services/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  formReg: FormGroup;
+  formReg: UntypedFormGroup;
   passwordsMatch: boolean = false;
   formError: boolean = false;
 
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private fb: UntypedFormBuilder, private userService: UserService, private router: Router) {
 
     this.formReg = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
