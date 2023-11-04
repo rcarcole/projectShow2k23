@@ -14,6 +14,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BorrarComponent } from './borrar/borrar.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     UserComponent,
     ModalTaskComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    BorrarComponent
   ],
   imports: [
     BrowserModule,
