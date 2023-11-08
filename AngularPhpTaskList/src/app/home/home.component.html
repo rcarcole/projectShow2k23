@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
         <div class="mt-5">
-            <h1>Home</h1>
+            <h1>Task List</h1>
             <div class="form-check" *ngFor="let task of exampleTasks">
                 <input class="form-check-input" type="checkbox" value="" id="{{ task.id }}">
                 <label class="form-check-label" for="flexCheckDefault" (click)="openModal(task)">
@@ -9,11 +9,9 @@
                 </label>
             </div>
             <div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                    id="modalId">Add Task</button>
+                <button type="button" class="btn btn-primary" id="modalId" (click)="openModal()">Add Task</button>
                 <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <app-modal-task (newItemEvent)="addTask($event)" [task]="selectedTask"></app-modal-task>
                 </div>
             </div>
         </div>

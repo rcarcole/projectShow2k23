@@ -14,7 +14,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { BorrarComponent } from './borrar/borrar.component';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -27,7 +27,6 @@ import { BorrarComponent } from './borrar/borrar.component';
     ModalTaskComponent,
     MenuComponent,
     FooterComponent,
-    BorrarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +35,9 @@ import { BorrarComponent } from './borrar/borrar.component';
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    NgbModule,
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Category, Task } from '../interfaces/interfaces';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalTaskComponent } from '../modal-task/modal-task.component';
 
 
 @Component({
@@ -8,7 +10,6 @@ import { User, Category, Task } from '../interfaces/interfaces';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  selectedTask?: Task;
 
   exampleUser: User = {
     id: 1,
@@ -37,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   exampleTasks: Task[] = [
     {
-      id: 1001,
+      id: '1001',
       title: 'Finalizar informe mensual',
       description: 'Revisar los datos y finalizar el informe para la reunión de mañana',
       status: false,
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit {
       category_id: this.exampleCategory1.id,
     },
     {
-      id: 1002,
+      id: '1002',
       title: 'Comprar leche',
       description: 'No olvidar comprar leche después del trabajo',
       status: true,
@@ -56,24 +57,24 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private modalService: NgbModal) { }
 
-  openModal(task: Task): void {
-    this.selectedTask = task;
-    let modal = document.getElementById('modalId');
-    setTimeout(() => {
-      modal = document.getElementById('modalId');
-      modal?.click();
-    }, 1000);
-    console.log(modal);
-
+  openModal(task?: Task): void {
+    const modalRef = this.modalService.open(ModalTaskComponent);
+    modalRef.componentInstance.task = task;
+    modalRef.componentInstance.newItemEvent.subscribe((result: Task) => {
+      if (task) {
+        const index = this.exampleTasks.findIndex((t) => t.id === result.id);
+        this.exampleTasks[index] = result;
+      } else {
+        this.exampleTasks.push(result);
+      }
+      console.log(result);
+    });
   }
 
   ngOnInit(): void { }
 
-  addTask($event: any) {
-    this.exampleTasks.push($event);
-  }
 
 
 } 
