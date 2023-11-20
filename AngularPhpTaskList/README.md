@@ -1,27 +1,34 @@
-# AngularPhpTaskList
+<p align="center"><a href="https://angular.io" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Angular_full_color_logo.svg" width="150" alt="Angular Logo">
+  </a></p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
+# TaskList
 
-## Development server
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.12
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Frontend
 
-## Code scaffolding
+### Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To install and run this project locally, follow these steps:
 
-## Build
+```
+git clone https://github.com/rcarcole/projectShow2k23.git
+cd AngularPhpTaskList
+npm install
+ng serve
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Use
 
-## Running unit tests
+After running `ng serve`, visit `http://localhost:4200/` in your browser.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Contribute
 
-## Running end-to-end tests
+Contributions are always welcome. Follow these steps to contribute:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Fork the project.
+2. Create your Feature Branch (`git checkout -b feature/YourFeature`).
+3. Commit your changes (`git commit -m 'commentYourFeature'`).
+4. Push to the Branch (`git push origin feature/YourFeature`).
+5. Open a Pull Request.
