@@ -3,6 +3,7 @@ import { UntypedFormGroup, UntypedFormControl, UntypedFormBuilder } from '@angul
 import { Task } from '../interfaces/interfaces';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-modal-task',
@@ -15,7 +16,7 @@ export class ModalTaskComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<Task>();
   id?: string;
 
-  constructor(private fb: UntypedFormBuilder, public activeModal: NgbActiveModal) {
+  constructor(private fb: UntypedFormBuilder, public activeModal: NgbActiveModal, private taskService: TaskService) {
     this.form = new UntypedFormGroup({
       name: new UntypedFormControl(''),
       description: new UntypedFormControl(''),
@@ -43,16 +44,19 @@ export class ModalTaskComponent implements OnInit {
 
   addTask(): void {
     const task: Task = {
-      id: this.id ? this.id : uuidv4(),
       title: this.form.value.name,
       description: this.form.value.description,
       status: this.id ? this.task.status : false,
-      created_at: this.id ? this.task.create_at : new Date(),
-      updated_at: new Date(),
-      category_id: 0,
+      category_id: 1,
     };
-    this.newItemEvent.emit(task);
-    this.activeModal.close();
+    this.taskService.createTask(task).subscribe((data: any) => {
+      console.log(data);
+      this.newItemEvent.emit(JSON.parse(data.message));
+      this.activeModal.close();
+    });
+
   }
+
+
 
 }

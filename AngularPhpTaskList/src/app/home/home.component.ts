@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User, Category, Task } from '../interfaces/interfaces';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalTaskComponent } from '../modal-task/modal-task.component';
+import { TaskService } from '../services/task.service';
+import { CategoryService } from '../services/category.service';
 
 
 @Component({
@@ -57,7 +59,7 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private taskService: TaskService, private categoryService: CategoryService) { }
 
   openModal(task?: Task): void {
     const modalRef = this.modalService.open(ModalTaskComponent);
@@ -73,7 +75,26 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.taskService.getAllTasks().subscribe((tasks: any) => {
+      // console.log(tasks.message);
+      this.exampleTasks = JSON.parse(tasks.message);
+    }
+    );
+    this.categoryService.getAllCategories().subscribe((categories: any) => {
+      console.log(categories.message);
+      // this.exampleCategory1 = JSON.parse(categories.message)[0];
+      // this.exampleCategory2 = JSON.parse(categories.message)[1];
+    });
+  }
+
+  updateTask(task: Task): void {
+    console.log(task);
+    task.status = !task.status;
+    this.taskService.updateTask(task).subscribe((result: any) => {
+      console.log(result.message);
+    });
+  }
 
 
 

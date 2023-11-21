@@ -3,7 +3,8 @@
         <div class="mt-5">
             <h1>Task List</h1>
             <div class="form-check" *ngFor="let task of exampleTasks">
-                <input class="form-check-input" type="checkbox" value="" id="{{ task.id }}">
+                <input class="form-check-input" type="checkbox" value="" id="{{ task.id }}" [checked]="task.status"
+                    (click)="updateTask(task)">
                 <label class="form-check-label" for="flexCheckDefault" (click)="openModal(task)">
                     {{ task.title }}
                 </label>

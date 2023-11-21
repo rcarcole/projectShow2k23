@@ -1,10 +1,10 @@
 export interface Task {
-    id: string;
+    id?: string;
     title: string;
     description?: string;
     status: boolean;
-    created_at: Date;
-    updated_at: Date;
+    created_at?: Date;
+    updated_at?: Date;
     category_id: number;
 }
 
