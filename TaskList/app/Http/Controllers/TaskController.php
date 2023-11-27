@@ -46,4 +46,12 @@ class TaskController extends Controller
             'message' => $task->toJson(),
         ], 200);
     }
+
+    public function tasksByCategory($id)
+    {
+        $task = Task::where('category_id', $id)->get();
+        return response()->json([
+            'message' => $task->toJson(),
+        ], 200);
+    }
 }

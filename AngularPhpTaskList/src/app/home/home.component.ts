@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalTaskComponent } from '../modal-task/modal-task.component';
 import { TaskService } from '../services/task.service';
 import { CategoryService } from '../services/category.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { CategoryService } from '../services/category.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  categories: Category[] = [];
 
   exampleUser: User = {
     id: 1,
@@ -82,7 +85,8 @@ export class HomeComponent implements OnInit {
     }
     );
     this.categoryService.getAllCategories().subscribe((categories: any) => {
-      console.log(categories.message);
+      this.categories = JSON.parse(categories.message);
+      console.log();
       // this.exampleCategory1 = JSON.parse(categories.message)[0];
       // this.exampleCategory2 = JSON.parse(categories.message)[1];
     });
@@ -96,6 +100,35 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  deleteTask(task: Task) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result: any) => {
+      if (result.isConfirmed) {
+        this.taskService.deleteTask(task).subscribe((result: any) => {
+          console.log(result.message);
+          const index = this.exampleTasks.findIndex((t) => t.id === task.id);
+          this.exampleTasks.splice(index, 1);
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        });
+      }
+    });
 
+  }
+
+  selectCategory(category: Category): void {
+    console.log('hola');
+    console.log(category);
+  }
 
 } 
